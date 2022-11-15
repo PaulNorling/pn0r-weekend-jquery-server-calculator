@@ -1,15 +1,4 @@
 
-
-//TODO 
-//add button for clear all
-//more css
-//include the history function in your onReady() 
-//resverse for loop
-
-
-
-
-
 $(document).ready(onReady);
 
 let operator = null; 
