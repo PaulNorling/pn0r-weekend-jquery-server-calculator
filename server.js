@@ -5,29 +5,32 @@ const PORT = process.env.PORT || 5000;  // must be change to put on heroku
 
 let calculatorHistory = []; //store caclulation history
 
-let bodyParser = require('body-parser');  //magic
+let bodyParser = require('body-parser'); 
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));  //serve static files
 
+// send updated log of calculations
 app.get('/calculation', (req, res) => {
-    console.log('Request calculation app.get');  // send updated back log of calculations
-
+    console.log('Request calculation app.get');  
     res.send(calculatorHistory)
 });
 
-app.delete('/calculation', (req, res) => {   //clear all stored data          
+//clear all stored data 
+app.delete('/calculation', (req, res) => {            
     calculatorHistory = [];
     res.sendStatus(200); 
 });
 
+// receive calculator inputs
 app.post('/calculation', (req, res) => {
     console.log(req.body);
     calculator(req.body);
     res.sendStatus(201);
 })
 
-function calculator(calc) {         //calculate user input
+//calculate user input
+function calculator(calc) {         
     let answer = 0;
     console.log('in calculator' , calc.operator);
     switch (calc.operator) {

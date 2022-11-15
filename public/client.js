@@ -5,8 +5,9 @@ let operator = null;
 
 let test;
 
-function onReady() {      //event handlers
-    console.log('onReady')  //Checking to see if jquery is loaded
+//event handlers
+function onReady() {      
+    console.log('onReady') 
     $('#plus-btn').on('click', setOperator);
     $('#minus-btn').on('click', setOperator);
     $('#times-btn').on('click', setOperator);
@@ -14,11 +15,11 @@ function onReady() {      //event handlers
     $('#equals-btn').on('click', equals);
     $('#clear-btn').on('click', clearInput);
     $('#clearAll-btn').on('click', clearAll);
-    getCalculation();    //History function
+    getCalculation();    
 }
 
-function equals() {   // send user input to server
-  // removeColor();                               //junk
+// send user input to server
+function equals() {   
   $.ajax({
     method: 'POST',
     url: '/calculation',
@@ -36,7 +37,8 @@ function equals() {   // send user input to server
   })
 }
 
-function getCalculation() {   //requst updated calculator history from server
+//requst updated calculator history from server
+function getCalculation() {   
   $.ajax({
     method: 'GET',
     url: '/calculation'
@@ -48,7 +50,8 @@ function getCalculation() {   //requst updated calculator history from server
   })
 
 }
-// for (let i =response.length ; i>0; i--)
+
+// render to dom
 function appendToDom(response) {
   $('#numberOne').val('');
   $('#numberTwo').val('');
@@ -66,7 +69,8 @@ function appendToDom(response) {
 
 }
 
-function clearAll() {    //request sever to clear history set all fields to empty
+//request sever to clear history set all fields to empty
+function clearAll() {    
   clearInput();
   $.ajax({
     method: 'DELETE',
@@ -79,6 +83,7 @@ function clearAll() {    //request sever to clear history set all fields to empt
   })
 }
 
+//set calculation operator
 function setOperator() {
   removeColor();
   $(this).addClass('color')
@@ -86,6 +91,7 @@ function setOperator() {
   operator = $(this).text();
 }
 
+//clear input values and unselect operator
 function clearInput() {
   removeColor();
   $('#numberOne').val('');
@@ -93,7 +99,8 @@ function clearInput() {
   operator = null;
 }
 
-function removeColor() {                //better way to remove?
+// remove color from operator
+function removeColor() {                
   $('#minus-btn').removeClass('color');
   $('#plus-btn').removeClass('color');
   $('#times-btn').removeClass('color');
