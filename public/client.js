@@ -29,11 +29,11 @@ function equals() {
       operator: operator
     }
     }).then(function(response) {
-    console.log('My name a Borat', response);
+    console.log(response);
     getCalculation();
     removeColor();
   }).catch(function(error) {
-    alert('check engine', error);
+    alert(error);
   })
 }
 
@@ -43,7 +43,7 @@ function getCalculation() {
     method: 'GET',
     url: '/calculation'
   }).then(function(response){
-    console.log('Great Success!', response);
+    console.log(response);
    appendToDom(response);
   }).catch(function(error){
     alert('Fail', error);
